@@ -35,6 +35,16 @@ Through the above optimizations and aggregations:
 
 # Model
 
+We apply 5-fold cross-validation during model training.  
+To introduce parameter diversity across folds, different parameter sets are used based on the fold index:
+
+- **Even-numbered folds use `params2`**
+- **Odd-numbered folds use `params1`**
+ 
+In addition to this alternating LightGBM setup, **CatBoost**, **LightGBM with `params_3`**, and **LightGBM with `params_4`** are trained using their respective configurations consistently across all folds without parameter switching. After training, predictions from all 20 models (4 models plus five folds) are aggregated using **soft voting**, where the final prediction is obtained by averaging the predicted probabilities. The `params1` and `params2` models serve as the primary learners, alternating learning rates to provide additional flexibility. The GOSS-based LightGBM model focuses on samples with large gradients, while the `params4` model explicitly handles class imbalance. CatBoost provides a complementary boosting implementation and tree construction strategy.
+
+---
+
 ### LightGBM Parameter Sets
 
 | Parameter | params1 | params2 | Description |
@@ -55,11 +65,6 @@ Through the above optimizations and aggregations:
 | random_state | 42 | 42 | Random seed for reproducibility |
 | verbose | -1 | -1 | Suppresses training logs |
 
-We apply **5-fold cross-validation** during model training.  
-To introduce parameter diversity across folds, different parameter sets are used based on the fold index:
-
-- **Even-numbered folds use `params2`**
-- **Odd-numbered folds use `params1`**
 
 | Parameter | params_3 | params_4 | Description |
 |---------|---------|---------|-------------|
