@@ -113,3 +113,9 @@ All models achieved an AUC greater than 0.80 during 5-fold cross-validation, dem
 <img src="img/correlation.png" alt="correlation">
 
 Based on the OOF (out-of-fold) prediction correlation analysis, LGBM_4 exhibits the lowest correlation with all other models, following CatBoost, indicating that ihese models captures substantially different patterns in the data.
+
+# conclusion
+
+Model development and system design in this project were completed by me as the final project for **UNC STOR 565: Machine Learning**. I earned an **A** in the course and received a **Kaggle Bronze Medal**, which together demonstrate my ability in end-to-end machine learning practice, including feature engineering, model selection, cross-validation design, and ensemble construction. 
+
+Recently, I revisited and refactored the entire codebase, adding step-by-step comments and detailed explanations in an annotated Jupyter Notebook (.ipynb) to make the workflow easier to follow and reproduce. If any part of this work inspires your own ideas or supports your learning, that would be greatly appreciated.
