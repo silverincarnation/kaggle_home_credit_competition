@@ -10,3 +10,13 @@ Submissions are evaluated using a **gini stability metric**, where weekly Gini s
 
 By balancing model performance and robustness, this competition aims to help consumer finance providers expand responsible lending and improve financial inclusion for underserved populations.  
 **In this competition, I (Chen Kaixuan) achieved a Bronze Medal**, ranking among the top-performing solutions.
+
+# Data
+
+# Model
+
+# Evaluation
+
+The model is evaluated using a Gini score. For each `WEEK_NUM`, the AUC is computed based on the model predictions and converted to a Gini score using the formula:  
+**Gini = 2 × AUC − 1**.
+
