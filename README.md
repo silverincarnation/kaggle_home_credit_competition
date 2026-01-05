@@ -112,7 +112,7 @@ All models achieved an AUC greater than 0.80 during 5-fold cross-validation, dem
 
 <img src="img/correlation.png" alt="correlation">
 
-Based on the OOF (out-of-fold) prediction correlation analysis,  CatBoost exhibits the lowest correlation with all other models, following LGBM_4, indicating that ihese models captures substantially different patterns in the data.
+Based on the OOF (out-of-fold) prediction correlation analysis, LGBM_4 exhibits the lowest correlation with all other models, following CatBoost, indicating that ihese models captures substantially different patterns in the data.
 
 # Conclusion
 
