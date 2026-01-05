@@ -1,6 +1,5 @@
 # kaggle home credit competition
-<img src="img/bronze_medal.png"  alt="Bronze Medal">
-*I (Kaixuan Chen) won a bronze medla!*
+<i>I (Kaixuan Chen) won a bronze medal!</i>
 
 ## Overview
 
