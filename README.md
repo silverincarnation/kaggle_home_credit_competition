@@ -35,6 +35,68 @@ Through the above optimizations and aggregations:
 
 # Model
 
+### LightGBM Parameter Sets
+
+| Parameter | params1 | params2 | Description |
+|---------|--------|--------|-------------|
+| boosting_type | gbdt | gbdt | Gradient Boosting Decision Tree as the boosting framework |
+| colsample_bynode | 0.8 | 0.8 | Fraction of features randomly sampled at each tree node to reduce overfitting |
+| colsample_bytree | 0.8 | 0.8 | Fraction of features randomly sampled for each tree |
+| device | device | device | Training device (e.g., CPU or GPU) |
+| extra_trees | True | True | Enables Extremely Randomized Trees to introduce additional randomness |
+| learning_rate | 0.05 | 0.03 | Step size shrinkage controlling the contribution of each tree |
+| l1_regularization | 0.1 | 0.1 | L1 regularization term for sparsity and overfitting control |
+| l2_regularization | 10 | 10 | L2 regularization term to constrain model complexity |
+| max_depth | 20 | 16 | Maximum depth of individual trees |
+| metric | auc | auc | Evaluation metric using Area Under the ROC Curve |
+| n_estimators | 1500 | 1500 | Number of boosting iterations (trees) |
+| num_leaves | 64 | 54 | Maximum number of leaves in each tree |
+| objective | binary | binary | Objective function for binary classification |
+| random_state | 42 | 42 | Random seed for reproducibility |
+| verbose | -1 | -1 | Suppresses training logs |
+
+We apply **5-fold cross-validation** during model training.  
+To introduce parameter diversity across folds, different parameter sets are used based on the fold index:
+
+- **Even-numbered folds use `params2`**
+- **Odd-numbered folds use `params1`**
+
+| Parameter | params_3 | params_4 | Description |
+|---------|---------|---------|-------------|
+| boosting_type | goss | gbdt | Boosting method: GOSS (Gradient-based One-Side Sampling) focuses on large gradients for efficiency; GBDT is standard gradient boosting |
+| colsample_bynode | 0.8 | 0.8 | Fraction of features sampled at each tree node |
+| colsample_bytree | 0.8 | 0.8 | Fraction of features sampled for each tree |
+| device | device | device | Training device (CPU or GPU) |
+| extra_trees | True | True | Enables Extremely Randomized Trees to increase randomness |
+| learning_rate | 0.03 | 0.05 | Learning rate controlling the contribution of each tree |
+| l1_regularization | 0.1 | 0.1 | L1 regularization to encourage sparsity |
+| l2_regularization | 10 | 10 | L2 regularization to reduce overfitting |
+| max_depth | 16 | 20 | Maximum depth of trees |
+| metric | auc | auc | Evaluation metric using AUC |
+| n_estimators | 3000 | 2000 | Number of boosting iterations |
+| num_leaves | 54 | 64 | Maximum number of leaves per tree |
+| objective | binary | binary | Binary classification objective |
+| random_state | 42 | 42 | Random seed for reproducibility |
+| verbose | -1 | -1 | Suppresses training logs |
+| is_unbalance | — | True | Automatically handles class imbalance by adjusting weights |
+
+---
+
+### CatBoost Classifier Configuration
+
+| Parameter | Value | Description |
+|---------|-------|-------------|
+| best_model_min_trees | 700 | Minimum number of trees before selecting the best model |
+| boosting_type | Plain | Standard boosting scheme without ordered boosting |
+| eval_metric | AUC | Evaluation metric based on Area Under the ROC Curve |
+| iterations | est_cnt | Total number of boosting iterations |
+| learning_rate | 0.05 | Learning rate controlling step size |
+| l2_leaf_reg | 10 | L2 regularization coefficient for leaf values |
+| max_leaves | 64 | Maximum number of leaves in each tree |
+| random_seed | 42 | Random seed for reproducibility |
+| task_type | GPU | Training is performed on GPU |
+| use_best_model | True | Retains the best-performing model based on validation results |
+
 # Evaluation
 
 The model is evaluated using a Gini score. For each `WEEK_NUM`, the AUC is computed based on the model predictions and converted to a Gini score using the formula:  **Gini = 2 × AUC − 1**.
