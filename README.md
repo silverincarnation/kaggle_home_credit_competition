@@ -110,7 +110,6 @@ The model is evaluated using a Gini score. For each `WEEK_NUM`, the AUC is compu
 
 All models achieved an AUC greater than 0.80 during 5-fold cross-validation, demonstrating strong baseline performance. **LightGBM with GOSS** achieved the best trade-off between average performance and temporal stability, although it exhibited one outlier fold. The **LightGBM models using `params1` and `params2`** showed a higher performance ceiling but also suffered from greater variance across folds. **CatBoost** offered moderate stability with slightly lower overall performance, contributing useful diversity to the ensemble. **LightGBM with `params4`** emerged as the most stable model across folds, though its upper-bound performance was more limited compared to others.
 
-This diverse performance landscape across models is intentionally leveraged in the final ensemble via soft voting, allowing strengths in one model to compensate for weaknesses in others.
-
-
 <img src="img/correlation.png" alt="correlation">
+
+Based on the OOF (out-of-fold) prediction correlation analysis, LGBM_4 exhibits the lowest correlation with all other models, following CatBoost, indicating that ihese models captures substantially different patterns in the data.
