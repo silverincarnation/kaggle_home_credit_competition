@@ -1,2 +1,2 @@
-# kaggle_home_credit_competition
-Home Credit - Credit Risk Model Stability
+# kaggle home credit competition
+![Bronze Medal](kaggle_home_credit_competition/img/bronze_medal.png)
