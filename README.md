@@ -106,3 +106,6 @@ In addition to this alternating LightGBM setup, **CatBoost**, **LightGBM with `p
 
 The model is evaluated using a Gini score. For each `WEEK_NUM`, the AUC is computed based on the model predictions and converted to a Gini score using the formula:  **Gini = 2 × AUC − 1**.
 
+<img src="img/AUC.png" alt="AUC">
+
+<img src="img/correlation.png" alt="correlation">
